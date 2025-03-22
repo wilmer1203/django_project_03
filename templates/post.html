@@ -1,39 +1,33 @@
-
-<!-- for en html -->
-<!-- {% for post in post_list %}
-    <h1>{{ post.title }}</h1>
-    <p>{{ post.content }}</p>
-    
- 
-     
-    {% if post.image %}
-        <img src="{{ post.image.url }}" alt="Imagen de {{ post.title }}">
-    
-    {% endif %}
-
-
-{% endfor %}
-
- -->
-
- 
-<!-- En base.html -->
- 
- {% load static %}  
-<link rel="stylesheet" href="{% static 'css/styles.css' %}">
- 
-<div class="post-list">  
-    <h1 class="post-list-title">Lista de Posts</h1>  
-    
-    {% for post in post_list %}
-    <div class="post-card">  
-        {% if post.image %}
-        <img src="{{ post.image.url }}" alt="Imagen de {{ post.title }}">
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Lista de Posts</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+    <div class="post-list">
+        <h1 class="post-list-title">📝 Últimos Posts</h1>
         
-        {% endif %}
-        <h2 class="post-title">{{ post.title }}</h2>  
-        <p class="post-content">{{ post.content }}</p> 
-        <small class="post-date">Publicado el {{ post.created_at|date:"d/m/Y" }}</small>  
+        {% for post in post_list %}
+        <div class="post-card">
+            {% if post.image %}
+            <img src="{{ post.image.url }}" alt="Imagen de {{ post.title }}" loading="lazy">
+            {% endif %}
+            
+            <h2 class="post-title">{{ post.title }}</h2>
+            <p class="post-content">{{ post.content|truncatechars:250 }}</p>
+            <small class="post-date">Publicado el {{ post.created_at|date:"d/m/Y" }}</small>
+        </div>
+        {% empty %}
+        <div class="post-card">
+            <p class="post-content">No hay posts disponibles.</p>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-</div>
+</body>
+</html>
