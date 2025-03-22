@@ -3,24 +3,37 @@
 <!-- {% for post in post_list %}
     <h1>{{ post.title }}</h1>
     <p>{{ post.content }}</p>
+    
+ 
+     
+    {% if post.image %}
+        <img src="{{ post.image.url }}" alt="Imagen de {{ post.title }}">
+    
+    {% endif %}
+
+
 {% endfor %}
+
  -->
 
+ 
 <!-- En base.html -->
- {% load static %}  <!-- Carga los archivos estáticos -->
+ 
+ {% load static %}  
 <link rel="stylesheet" href="{% static 'css/styles.css' %}">
- {% extends 'base.html' %}  <!-- Extiende tu archivo base -->
-
-{% block content %}
-<div class="post-list">  <!-- Contenedor principal -->
-    <h1 class="post-list-title">Lista de Posts</h1>  <!-- Título de la lista -->
+ 
+<div class="post-list">  
+    <h1 class="post-list-title">Lista de Posts</h1>  
     
     {% for post in post_list %}
-    <div class="post-card">  <!-- Tarjeta para cada post -->
-        <h2 class="post-title">{{ post.title }}</h2>  <!-- Título del post -->
-        <p class="post-content">{{ post.content }}</p>  <!-- Contenido del post -->
-        <small class="post-date">Publicado el {{ post.date_posted|date:"d/m/Y" }}</small>  <!-- Fecha -->
+    <div class="post-card">  
+        {% if post.image %}
+        <img src="{{ post.image.url }}" alt="Imagen de {{ post.title }}">
+        
+        {% endif %}
+        <h2 class="post-title">{{ post.title }}</h2>  
+        <p class="post-content">{{ post.content }}</p> 
+        <small class="post-date">Publicado el {{ post.created_at|date:"d/m/Y" }}</small>  
     </div>
     {% endfor %}
 </div>
-{% endblock %}
