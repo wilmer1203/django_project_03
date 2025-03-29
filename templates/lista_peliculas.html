@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/peliculas.css' %}">
+
+<div class="cuevana-container">
+
+    <!-- Listado de películas -->
+    <div class="movie-grid">
+        {% for pelicula in peliculas %}
+        <div class="movie-card">
+            <div class="movie-poster">
+                {% if pelicula.portada %}
+                <img src="{{ pelicula.portada.url }}" alt="{{ pelicula.titulo }}">
+                {% else %}
+                <div class="no-poster">
+                    <i class="fas fa-film"></i>
+                </div>
+                {% endif %}
+                <div class="movie-hover">
+                    <!-- <a href="{% url 'detalle_pelicula' pelicula.id %}" class="play-button">
+                        <i class="fas fa-play"></i>
+                    </a> -->
+                    <a href="{% url 'detalle_pelicula' pelicula.pk %}" class="play-button">
+                        <i class="fas fa-play"></i>
+                    </a>
+                    <div class="movie-info">
+                        <span class="quality">HD</span>
+                        <span class="rating"><i class="fas fa-star"></i> 8.5</span>
+                        <span class="year">{{ pelicula.año }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="movie-details">
+                <h3 class="movie-title">{{ pelicula.titulo }}</h3>
+                <div class="meta-info">
+                    <span>{{ pelicula.get_genero_display }}</span>
+                    <span>{{ pelicula.duracion }} min</span>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

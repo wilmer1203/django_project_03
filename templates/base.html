@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineApp</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --cuevana-red: #E50914;
+            --cuevana-dark: #141414;
+            --cuevana-gray: #303030;
+            --cuevana-text: #E5E5E5;
+        }
+
+        body {
+            background-color: var(--cuevana-dark);
+            color: var(--cuevana-text);
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        .cuevana-navbar {
+            background: linear-gradient(180deg, var(--cuevana-dark) 0%, rgba(20,20,20,0.9) 100%);
+            padding: 0 4%;
+            height: 68px;
+            border-bottom: 1px solid var(--cuevana-gray);
+        }
+
+        .cuevana-navbar .navbar-brand {
+            color: var(--cuevana-red);
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: -1px;
+        }
+
+        .cuevana-navbar .nav-link {
+            color: var(--cuevana-text);
+            margin-right: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .cuevana-navbar .nav-link:hover {
+            color: var(--cuevana-red);
+        }
+
+        .search-box {
+            position: relative;
+            width: 300px;
+        }
+
+        .search-input {
+            background: rgba(0,0,0,0.7);
+            border: 1px solid var(--cuevana-gray);
+            color: white;
+            padding: 7px 35px 7px 15px;
+            border-radius: 4px;
+        }
+
+        .search-input:focus {
+            background: rgba(0,0,0,0.9);
+            border-color: var(--cuevana-red);
+            box-shadow: none;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--cuevana-text);
+        }
+
+        .main-container {
+            padding-top: 80px;
+            min-height: calc(100vh - 120px);
+        }
+
+        .cuevana-footer {
+            background: var(--cuevana-dark);
+            border-top: 1px solid var(--cuevana-gray);
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark cuevana-navbar fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'lista_peliculas' %}">CINEAPP</a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-home me-2"></i>Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-film me-2"></i>Películas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-tv me-2"></i>Series</a>
+                    </li>
+                </ul>
+                
+                <div class="d-flex">
+                    <div class="search-box">
+                        <input type="text" class="form-control search-input" placeholder="Buscar...">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="main-container">
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+
+    <footer class="cuevana-footer">
+        <div class="container text-center">
+            <div class="mb-3">
+                <a href="#" class="text-white-50 mx-3 text-decoration-none">Términos de uso</a>
+                <a href="#" class="text-white-50 mx-3 text-decoration-none">Privacidad</a>
+                <a href="#" class="text-white-50 mx-3 text-decoration-none">Contáctanos</a>
+            </div>
+            <p class="text-white-50 mb-0">&copy; 2023 CineApp. Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/detalle_peliculas.css' %}">
+
+<div class="detail-container">
+    <div class="movie-detail-card">
+        <a href="{% url 'lista_peliculas' %}" class="btn-volver">
+            <i class="fas fa-arrow-left"></i> Volver
+        </a>
+
+        <div class="movie-poster-container">
+            {% if pelicula.portada %}
+                <img src="{{ pelicula.portada.url }}" class="movie-poster" alt="{{ pelicula.titulo }}">
+            {% else %}
+                <div class="no-poster">
+                    <i class="fas fa-film"></i>
+                    <p>Sin portada disponible</p>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="movie-info">
+            <h1 class="movie-title">{{ pelicula.titulo }}</h1>
+            
+            <div class="meta-info">
+                <span class="year">{{ pelicula.año }}</span>
+                <span class="duration">{{ pelicula.duracion }} min</span>
+                <span class="genre">{{ pelicula.get_genero_display }}</span>
+            </div>
+
+            <div class="director">
+                <i class="fas fa-user-tie"></i>
+                <h3>{{ pelicula.director }}</h3>
+            </div>
+
+            <div class="details-grid">
+                <div class="detail-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <div>
+                        <h4>Estreno</h4>
+                        <p>{{ pelicula.año }}</p>
+                    </div>
+                </div>
+                
+                <div class="detail-item">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <h4>Duración</h4>
+                        <p>{{ pelicula.duracion }} minutos</p>
+                    </div>
+                </div>
+                
+                <div class="detail-item">
+                    <i class="fas fa-tags"></i>
+                    <div>
+                        <h4>Género</h4>
+                        <p>{{ pelicula.get_genero_display }}</p>
+                    </div>
+                </div>
+                
+                <div class="detail-item">
+                    <i class="fas fa-star"></i>
+                    <div>
+                        <h4>Calificación</h4>
+                        <p>8.5/10</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="synopsis">
+                <h2>Sinopsis</h2>
+                <p>{{ pelicula.descripcion }}</p>
+            </div>
+
+            <div class="gallery">
+                <h2>Galería</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">Imagen 1</div>
+                    <div class="gallery-item">Imagen 2</div>
+                    <div class="gallery-item">Video</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

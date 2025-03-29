@@ -1,0 +1,75 @@
+:root {
+    --cuevana-red: #E50914;
+    --cuevana-dark: #141414;
+    --cuevana-gray: #303030;
+    --cuevana-text: #E5E5E5;
+}
+
+body {
+    background-color: var(--cuevana-dark);
+    color: var(--cuevana-text);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.cuevana-navbar {
+    background: linear-gradient(180deg, var(--cuevana-dark) 0%, rgba(20,20,20,0.9) 100%);
+    padding: 0 4%;
+    height: 68px;
+    border-bottom: 1px solid var(--cuevana-gray);
+}
+
+.cuevana-navbar .navbar-brand {
+    color: var(--cuevana-red);
+    font-size: 1.8rem;
+    font-weight: bold;
+    letter-spacing: -1px;
+}
+
+.cuevana-navbar .nav-link {
+    color: var(--cuevana-text);
+    margin-right: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.cuevana-navbar .nav-link:hover {
+    color: var(--cuevana-red);
+}
+
+.search-box {
+    position: relative;
+    width: 300px;
+}
+
+.search-input {
+    background: rgba(0,0,0,0.7);
+    border: 1px solid var(--cuevana-gray);
+    color: white;
+    padding: 7px 35px 7px 15px;
+    border-radius: 4px;
+}
+
+.search-input:focus {
+    background: rgba(0,0,0,0.9);
+    border-color: var(--cuevana-red);
+    box-shadow: none;
+}
+
+.search-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--cuevana-text);
+}
+
+.main-container {
+    padding-top: 80px;
+    min-height: calc(100vh - 120px);
+}
+
+.cuevana-footer {
+    background: var(--cuevana-dark);
+    border-top: 1px solid var(--cuevana-gray);
+    padding: 2rem 0;
+    margin-top: 3rem;
+}
